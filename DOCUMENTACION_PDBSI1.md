@@ -1,5 +1,16 @@
 # Documentación Técnica - Copybook PDBSI1.txt
 
+## Resumen Ejecutivo
+
+Este documento proporciona una documentación completa del programa COBOL PDBSI1.txt, utilizado para el acceso y mantenimiento de datos generales de siniestros en el sistema de seguros de automóviles. El programa cuenta con más de 11,000 líneas de código y ha sido mantenido activamente desde 1997 hasta 2024.
+
+### Principales Características:
+- **35+ estructuras de datos** organizadas en niveles jerárquicos
+- **25+ módulos integrados** para diferentes funcionalidades
+- **20+ tablas DB2** para persistencia de datos
+- **Funcionalidades principales:** Gestión de siniestros, franquicias flexibles, procedimientos judiciales, auditoría
+- **Última modificación:** 2024 (proyecto de desacoplamiento de perímetro)
+
 ## Análisis y Descomposición de la Copybook
 
 ### Información General
@@ -444,6 +455,32 @@ Offset  Campo                    Tipo      Longitud  Descripción
 - Incluir fecha, autor y descripción de cada modificación
 - Revisar anualmente la vigencia de la documentación
 - Coordinar cambios con el equipo de desarrollo y analistas funcionales
+
+## 10. Notas de Implementación
+
+### 10.1 Consideraciones Técnicas
+- El programa utiliza DECIMAL-POINT IS COMMA para formato europeo de números
+- Integración con DB2 para persistencia de datos
+- Uso extensivo de EXEC SQL para operaciones de base de datos
+- Manejo de transacciones CICS para operaciones online
+
+### 10.2 Dependencias del Sistema
+- **CICS:** Sistema de transacciones online
+- **DB2:** Base de datos relacional
+- **Módulos externos:** 25+ módulos para funcionalidades específicas
+- **Tablas maestras:** Control de validaciones y catálogos
+
+### 10.3 Consideraciones de Rendimiento
+- Uso de cursores para operaciones de lectura masiva
+- Índices recomendados en FCURSINI, FCURPOLI para optimización
+- Control de bloqueos en operaciones de actualización concurrente
+- Uso de WITH UR para consultas de solo lectura
+
+### 10.4 Seguridad y Auditoría
+- Registro automático de cambios en tabla SLELOGB
+- Control de acceso por usuario y transacción
+- Trazabilidad completa de modificaciones
+- Validaciones de integridad referencial
 
 ---
 
